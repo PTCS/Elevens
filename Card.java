@@ -31,6 +31,14 @@ public class Card implements Comparable {
     }
 
     /**
+     * Gets the value of the card
+     * @return the value of the card
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
      * Retuns a string representation of the card.
      * @return string representation of the card
      */
@@ -48,6 +56,8 @@ public class Card implements Comparable {
         else
             return String.valueOf(value);
     }
+
+
 
     /**
      * Compares two cards

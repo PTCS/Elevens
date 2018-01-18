@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Elevens {
 
@@ -67,9 +68,39 @@ public class Elevens {
      * @param moves moves from the user.
      */
     public void processMoves(String[] moves) {
-        for(String s : moves) {
-            if(deck.size() > 0)
-                board.replace(new Card(s), deck.getNextCard());
+        if (moves.length == 2) {
+            Card c1 = new Card(moves[0]);
+            Card c2 = new Card(moves[1]);
+            if (board.contains(c1) && board.contains(c2) && c1.getValue() + c2.getValue() == 11) {
+                for(String s : moves) {
+                    if(deck.size() > 0)
+                        board.replace(new Card(s), deck.getNextCard());
+                }
+            }
+            else {
+                System.out.println("You played an invalid move!");
+                return;
+            }
+        }
+        else if (moves.length == 3) {
+            Card c1 = new Card(moves[0]);
+            Card c2 = new Card(moves[1]);
+            Card c3 = new Card(moves[2]);
+            Arrays.sort(moves);
+            if (moves[0].equals("J") && moves[1].equals("K") && moves[2].equals("Q") && board.contains(c1) && board.contains(c2) && board.contains(c3)) { 
+                for(String s : moves) {
+                    if(deck.size() > 0)
+                        board.replace(new Card(s), deck.getNextCard());
+                }
+            }
+            else {
+                System.out.println("You played an invalid move!");
+                return;
+            }
+        }
+
+        else {
+            System.out.println("You played an invalid move!");
         }
     }
 
@@ -79,5 +110,14 @@ public class Elevens {
      */
     public String getBoard() {
         return board.toString();
+    }
+
+    /**
+     * Returns the size of the deck
+     * @return the size of the deck
+     */
+
+    public int deckSize() {
+        return deck.size();
     }
 }
