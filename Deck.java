@@ -18,10 +18,10 @@ public class Deck {
      */
     public void loadCards() {
         for(int i = 1; i <= 13; i++) {
-            theDeck.add(new Card(i));
-            theDeck.add(new Card(i));
-            theDeck.add(new Card(i));
-            theDeck.add(new Card(i));
+            for (int j = 0; j < 4; j ++)
+            {
+                theDeck.add(new Card(i));
+            }
         }
         shuffle();
     }

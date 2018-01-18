@@ -9,14 +9,22 @@ public class Driver {
 
         do {
             System.out.println(game.getBoard());
+            System.out.println();
 
             if (!game.isOver()) {
-                String[] moves = in.nextLine().split(" ");
+                String[] moves;
+
+                do
+                {
+                    moves = in.nextLine().split(" ");
+                } while (! game.isValid(moves));
                 game.processMoves(moves);
+                System.out.println();
             }
         } while(!game.isOver());
 
         System.out.println(game.getBoard());
+        System.out.println();
 
         if(game.didWin())
             System.out.println("Winner");

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 
 public class Elevens {
 
@@ -79,5 +80,77 @@ public class Elevens {
      */
     public String getBoard() {
         return board.toString();
+    }
+
+    /**
+     * Returns whether the choosing of cards is valid
+     * @return a boolean output of whether the cards chosen is valid
+     */
+     public boolean isValid(String[] args)
+     {
+         boolean status = true;
+         if (args.length == 3)
+         {
+             String[] valid = {"J", "Q", "K"};
+
+             ArrayList<String> key = new ArrayList<String>();
+             for (String str : valid)
+             {
+                 key.add(str);
+             }
+             Collections.sort(key);
+
+             ArrayList<String> comp = new ArrayList<String>();
+             for (String str : args)
+             {
+                 comp.add(str);
+             }
+
+             Collections.sort(comp);
+
+             status = comp.equals(key);
+         }
+         else if (args.length == 2)
+         {
+             boolean integers = true;
+             int sum = 0;
+             for (String str : args)
+             {
+                 Card c = new Card(str);
+                 try
+                 {
+                     sum += c.getValue(); 
+                 }
+                 catch (Exception e)
+                 {
+                     integers = false;
+                     break;
+                 }
+             }
+             status =  integers && sum == 11; 
+         }
+         else
+         {
+             status = false;
+         }
+
+         if (status)
+         {
+             boolean finalStatus = true;
+             for (String str : args)
+             {
+                 Card c = new Card(str);
+                 if (! board.contains(c))
+                 {
+                     finalStatus = false;
+                     break;
+                 }
+             }
+             return finalStatus;
+         }
+         else
+         {
+             return false;
+         }
     }
 }

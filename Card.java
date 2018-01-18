@@ -81,4 +81,9 @@ public class Card implements Comparable {
         return new Card(11 - value);
     }
 
+    public int getValue()
+    {
+        return value;
+    }
+
 }
