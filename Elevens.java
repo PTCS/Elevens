@@ -67,6 +67,22 @@ public class Elevens {
      * @param moves moves from the user.
      */
     public void processMoves(String[] moves) {
+	//gives a hint to user: move with first possible card is returned
+	System.out.println("I'm confused");
+	System.out.println(Arrays.toString(moves));
+	if (moves[0].equals("?")) {
+	    System.out.println("Entered");
+//	    ArrayList<Card> cards = board.getAllCards();
+	    /*
+	    for (Card c : cards) {
+		Card matching = c.getMatchingCard();
+	    	if (cards.contains(matching)) {
+		    System.out.println(c.toString() + " " + matching.toString());
+		    return;
+		}
+	    }
+	    */
+	}
         for(String s : moves) {
             if(deck.size() > 0)
                 board.replace(new Card(s), deck.getNextCard());
