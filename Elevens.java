@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Elevens {
 
@@ -63,11 +63,48 @@ public class Elevens {
     }
 
     /**
+     * Checks if valid move from the user.
+     * @param moves moves from the user.
+     */
+    private boolean isValid(String[] moves) {
+	if (moves.length == 0 && moves[0].equals("?")) {
+	    return true;
+	}
+	ArrayList<Card> values = board.getAllCards();
+        Card jack = new Card(11);
+        Card queen = new Card(12);
+        Card king = new Card(13);
+        if(moves.length == 3 && values.contains(jack) && values.contains(queen) && values.contains(king)) {
+	    ArrayList<Card> moveList = new ArrayList<Card>();
+	    moveList.add(new Card(moves[0]));
+	    moveList.add(new Card(moves[1]));
+	    moveList.add(new Card(moves[2]));
+	    if (moveList.contains(jack) && moveList.contains(queen) && moveList.contains(king)) {
+		return true;
+	    }
+	}
+
+	if (moves.length == 2) {
+	    Card c1 = new Card(moves[0]);
+            Card c2 = new Card(moves[1]);
+	    if (c1.equals(c2.getMatchingCard()) && values.contains(c1) && values.contains(c2)) {
+	    	return true;
+	    }
+	}
+
+	return false;
+    }
+
+    /**
      * Processes moves from the user.
      * @param moves moves from the user.
      */
     public void processMoves(String[] moves) {
 	//gives a hint to user: move with first possible card is returned
+	if (!isValid(moves)) {
+	    System.out.println("Invalid moves.");
+	    return;
+	}
 	if (moves[0].equals("?")) {
 	    Card jack = new Card(11);
 	    Card queen = new Card(12);
