@@ -67,7 +67,7 @@ public class Elevens {
      * @param moves moves from the user.
      */
     private boolean isValid(String[] moves) {
-	if (moves.length == 0 && moves[0].equals("?")) {
+	if (moves.length == 1 && moves[0].equals("?")) {
 	    return true;
 	}
 	ArrayList<Card> values = board.getAllCards();
@@ -102,7 +102,7 @@ public class Elevens {
     public void processMoves(String[] moves) {
 	//gives a hint to user: move with first possible card is returned
 	if (!isValid(moves)) {
-	    System.out.println("Invalid moves.");
+	    System.out.println("Invalid move");
 	    return;
 	}
 	if (moves[0].equals("?")) {
