@@ -6,14 +6,19 @@ public class Driver {
         Elevens game = new Elevens();
 
         do {
+	    System.out.println(game.getDeckSize() + " cards remaining.");
             System.out.println(game.getBoard());
 
             if (!game.isOver()) {
-                String[] moves = in.nextLine().split(" ");
-		if (game.movesValid(moves))
-                    game.processMoves(moves);
-            	else
-		    System.out.println("Invalid move.");
+		System.out.println("Please enter your move: ");
+		String[] moves = in.nextLine().split(" ");
+		
+		while (!game.movesValid(moves)) {
+		    System.out.println("Invalid move. Please enter your move: ");
+		    moves = in.nextLine().split(" ");
+		}
+		
+                game.processMoves(moves);
 	    }
 	    System.out.println();
         } while(!game.isOver());

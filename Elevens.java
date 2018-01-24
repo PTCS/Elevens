@@ -73,6 +73,10 @@ public class Elevens {
         }
     }
 
+    /**
+    * Returns true if the player's moves are valid, false otherwise.
+    * @return true if the player's moves are valid, false otherwise.
+    */
     public boolean movesValid(String[] moves) {
 	boolean isJQK = moves.length == 3 && moves[0].equals("J") && moves[1].equals("Q") && moves[2].equals("K");
 	boolean isNum = moves.length == 2 && moves[0].matches("[1-9]|T|A") && moves[1].matches("[1-9]|T|A");	
@@ -101,6 +105,15 @@ public class Elevens {
 
 	return (sum == 11 || isJQK);
     }
+    
+    /**
+    * Returns size of the deck
+    * @return size of the deck
+    */
+    public int getDeckSize() {
+	return deck.size();
+    }
+
     /**
      * Returns a string representation of the board
      * @return a string representation of the board
