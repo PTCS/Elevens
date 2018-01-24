@@ -61,6 +61,9 @@ public class Elevens {
     public boolean didWin() {
         return deck.size() == 0;
     }
+    public int getDeckSize(){
+        return deck.size();
+    }
 
     /**
      * Processes moves from the user.
