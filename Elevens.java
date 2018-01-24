@@ -73,6 +73,34 @@ public class Elevens {
         }
     }
 
+    public boolean movesValid(String[] moves) {
+	boolean isJQK = moves.length == 3 && moves[0].equals("J") && moves[1].equals("Q") && moves[2].equals("K");
+	boolean isNum = moves.length == 2 && moves[0].matches("[1-9]|T|A") && moves[1].matches("[1-9]|T|A");	
+	if (!isJQK && !isNum)
+	    return false;
+	
+	ArrayList<Card> values = board.getAllCards();
+	if (isJQK)
+            return values.contains(new Card(11)) && values.contains(new Card(12)) && values.contains(new Card(13));
+
+	int sum = 0;
+	for (String s: moves) {
+	   int value;
+	   if (s.equals("T"))
+		value = 10;
+	   else if (s.equals("A"))
+		value = 1;
+	   else
+		value = Integer.parseInt(s);
+           
+	   Card c = new Card(value);
+	   if (!values.contains(c))
+		return false;
+	   sum += value;
+	}
+
+	return (sum == 11 || isJQK);
+    }
     /**
      * Returns a string representation of the board
      * @return a string representation of the board
