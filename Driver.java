@@ -11,11 +11,12 @@ public class Driver {
 
             if (!game.isOver()) {
 		System.out.println("Please enter your move: ");
-		String[] moves = in.nextLine().split(" ");
 		
+		String[] moves = uppercase(in.nextLine().split(" "));
+	
 		while (!game.movesValid(moves)) {
 		    System.out.println("Invalid move. Please enter your move: ");
-		    moves = in.nextLine().split(" ");
+		    moves = uppercase(in.nextLine().split(" "));
 		}
 		
                 game.processMoves(moves);
@@ -29,7 +30,13 @@ public class Driver {
             System.out.println("Winner");
         else
             System.out.println("Lost");
+    }
 
+    public static String[] uppercase(String[] moves) {
+	String[] converted = new String[moves.length];
+	for (int i = 0; i < moves.length; i++)
+	    converted[i] = moves[i].toUpperCase();
 
+	return converted;
     }
 }
