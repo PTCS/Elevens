@@ -6,14 +6,16 @@ public class Driver {
         Scanner in = new Scanner(System.in);
 
         Elevens game = new Elevens();
-
         do {
+	    boolean valid=true;
             System.out.println(game.getBoard());
 
             if (!game.isOver()) {
                 String[] moves = in.nextLine().split(" ");
-                game.processMoves(moves);
+                valid=game.processMoves(moves);
             }
+	    if(!valid)
+		System.out.println("Incorrect play, try again.");
         } while(!game.isOver());
 
         System.out.println(game.getBoard());

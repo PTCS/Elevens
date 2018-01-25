@@ -66,11 +66,40 @@ public class Elevens {
      * Processes moves from the user.
      * @param moves moves from the user.
      */
-    public void processMoves(String[] moves) {
-        for(String s : moves) {
-            if(deck.size() > 0)
+    public boolean processMoves(String[] moves) {
+	boolean valid=false;
+	ArrayList<Card> play = new ArrayList<Card>();
+	for(String s : moves) {
+	    for(Card c : board.getAllCards())
+		if(c.toString().equals(s.toUpperCase()))
+		    valid=true;
+	    if(valid)
+		play.add(new Card(s));
+	    else
+		return false;
+	}
+	valid=true;
+	while(play.contains(new Card(11))&&play.contains(new Card(12))&& play.contains(new Card(13))) {
+	    play.remove(play.indexOf(new Card(11)));
+	    play.remove(play.indexOf(new Card(12)));
+	    play.remove(play.indexOf(new Card(13)));
+	}
+	for(int i = 0; i<play.size();i++) {
+	    Card c = play.get(i).getMatchingCard();
+	    if(play.contains(c)) {
+		play.remove(play.indexOf(c));
+		play.remove(i);
+		i=i-1;
+	    }
+	    else
+		return false;
+	}
+	for(String s: moves) {
+            if(deck.size() > 0) {
                 board.replace(new Card(s), deck.getNextCard());
+	    }
         }
+	return true;
     }
 
     /**

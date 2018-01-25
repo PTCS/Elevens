@@ -15,7 +15,7 @@ public class Card implements Comparable {
      * @param inDesc the desc of the card (e.g. A, 2..9, T, J, Q, K)
      */
     public Card(String inDesc) {
-
+	inDesc=inDesc.toUpperCase();
         if(inDesc.equals("A"))
             value = 1;
         else if(inDesc.equals("T"))
@@ -62,6 +62,13 @@ public class Card implements Comparable {
             return 1;
         else
             return -1;
+    }
+    /**
+     * Returns the integer value of the card
+     * @return the integer value of the card
+     */
+    public int getValue() {
+	return value;
     }
 
     /**
