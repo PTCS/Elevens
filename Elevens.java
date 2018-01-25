@@ -103,7 +103,7 @@ public class Elevens {
 	   sum += value;
 	}
 
-	return (sum == 11 || isJQK);
+	return sum == 11;
     }
     
     /**
