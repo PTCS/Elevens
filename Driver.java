@@ -12,7 +12,11 @@ public class Driver {
 
             if (!game.isOver()) {
                 String[] moves = in.nextLine().split(" ");
-                game.processMoves(moves);
+                boolean s = game.processMoves(moves);
+		if(s)
+			System.out.println("Move valid!");
+		else
+			System.out.println("Move Invalid! Please try again.");
             }
         } while(!game.isOver());
 
