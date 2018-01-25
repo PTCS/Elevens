@@ -7,7 +7,7 @@ public class Driver {
 
 	while (replay.equals("Y")) {
 	    Elevens game = new Elevens();
-
+	    long startTime = System.currentTimeMillis();
             do {
 	        System.out.println(game.getDeckSize() + " cards remaining.");
                 System.out.println(game.getBoard());
@@ -27,11 +27,11 @@ public class Driver {
 
     	        System.out.println();
             } while(!game.isOver());
-
+	    long endTime = System.currentTimeMillis();
             System.out.println(game.getBoard());
 
             if(game.didWin())
-                System.out.println("Winner");
+                System.out.println("Winner! Took " + (endTime - startTime)/1000 + " secs");
             else
                 System.out.println("Lost");
         
