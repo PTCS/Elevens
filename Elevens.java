@@ -1,4 +1,6 @@
+import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Elevens {
 
@@ -78,8 +80,9 @@ public class Elevens {
     * @return true if the player's moves are valid, false otherwise.
     */
     public boolean movesValid(String[] moves) {
-	boolean isJQK = moves.length == 3 && moves[0].equals("J") && moves[1].equals("Q") && moves[2].equals("K");
-	boolean isNum = moves.length == 2 && moves[0].matches("[1-9]|T|A") && moves[1].matches("[1-9]|T|A");	
+        List<String> moveList = Arrays.asList(moves);
+        boolean isJQK = moves.length == 3 && moveList.contains("J") && moveList.contains("Q") && moveList.contains("K");
+        boolean isNum = moves.length == 2 && moves[0].matches("[1-9]|T|A") && moves[1].matches("[1-9]|T|A"); 
 	if (!isJQK && !isNum)
 	    return false;
 	
