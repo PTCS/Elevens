@@ -67,11 +67,56 @@ public class Elevens {
      * @param moves moves from the user.
      */
     public void processMoves(String[] moves) {
+	
         for(String s : moves) {
             if(deck.size() > 0)
                 board.replace(new Card(s), deck.getNextCard());
         }
     }
+
+/**
+* checks if moves are valid
+*@param moves moves from user
+*@return if the moves are legal
+*/
+public boolean validMoves(String[] mvs){
+
+	ArrayList<String> moves= new ArrayList<String>();
+	for (String m: mvs){
+		moves.add(m);
+	}
+	
+	if(moves.contains("hint")||moves.contains("Hint"))
+		return false;
+	if(moves.contains("J")||moves.contains("Q")||moves.contains("K")){
+		
+		return (moves.contains("J")&&moves.contains("Q")&&moves.contains("K"));
+	
+	}
+	if(moves.size()<2)
+		return false;
+	Card c1 = new Card(mvs[0]);
+	Card c2=new Card(mvs[1]);
+	return( c1.getMatchingCard().equals(c2));
+}
+
+/**
+*gives a hint based on current board
+*@return a valid move for the current board
+*/
+public String getHint(){
+	ArrayList<Card> cards = board.getAllCards();
+      Card jack = new Card(11);
+        Card queen = new Card(12);
+        Card king = new Card(13);
+	if(cards.contains(jack)&&cards.contains(queen)&&cards.contains(king))
+		return "J Q K";
+	for (Card c: cards){
+		if(cards.contains(c.getMatchingCard()))
+			return c.toString()+" "+c.getMatchingCard().toString();
+}
+	return "";
+}
 
     /**
      * Returns a string representation of the board

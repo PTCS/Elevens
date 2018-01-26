@@ -6,14 +6,28 @@ public class Driver {
         Scanner in = new Scanner(System.in);
 
         Elevens game = new Elevens();
-
+	System.out.println("Welcome to Elevens.");
+	System.out.println("(Hint: type 'hint' without quotes for a hint)");
         do {
             System.out.println(game.getBoard());
-
+	    String[] moves = null; 
             if (!game.isOver()) {
-                String[] moves = in.nextLine().split(" ");
-                game.processMoves(moves);
-            }
+		do{
+                	moves = in.nextLine().split(" ");
+			if(moves[0].equals("hint") || moves[0].equals("Hint")){
+				System.out.println("hint: "+game.getHint());
+			}
+			if(!game.validMoves(moves)){
+				if(!moves[0].equals("hint")||moves[0].equals("Hint"))
+					System.out.println("Invalid move");
+			}
+		}
+		while(!game.validMoves(moves));
+		game.processMoves(moves);
+}
+		
+                
+            
         } while(!game.isOver());
 
         System.out.println(game.getBoard());
