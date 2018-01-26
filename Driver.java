@@ -7,12 +7,17 @@ public class Driver {
 
         Elevens game = new Elevens();
 
+
         do {
             System.out.println(game.getBoard());
 
             if (!game.isOver()) {
                 String[] moves = in.nextLine().split(" ");
-                game.processMoves(moves);
+                boolean s = game.processMoves(moves);
+                if(s)
+                    System.out.println("Move valid!");
+                else
+                    System.out.println("Move invalid. Please try again.");
             }
         } while(!game.isOver());
 
