@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+import javafx.util.Pair;
 
 public class Elevens {
 
@@ -79,5 +81,65 @@ public class Elevens {
      */
     public String getBoard() {
         return board.toString();
+    }
+
+    public boolean checkMoves(String[] moves){
+	if (moves.length > 3 || moves.length < 2)
+	    return false;
+	int sum = 0;
+	if (moves.length == 3)
+	    sum = 100;
+	for(String s: moves){
+	    try {
+		int num = Integer.parseInt(s);
+		if (num > 9 || num < 1){
+		    return false;
+		}
+		sum += num;
+	    } catch (NumberFormatException e){
+		if (s.equals("J")){
+		    sum += 15;
+		}
+		else if (s.equals("K")){
+		    sum += 16;
+		}
+		else if (s.equals("A")){
+		    sum+= 1;
+		}
+		else if (s.equals("Q")){
+		    sum += 17;
+		}
+		else if (s.equals("T")){
+		    sum += 10;
+		}
+		else{
+		    return false;
+		}
+	    }
+	}
+	for (String s : moves){
+	    if (!board.contains(new Card(s)))
+		return false;
+	    
+	}
+
+	if (sum == 11 || sum == 148)
+	    return true;
+	return false;
+    }
+    public void explode(){
+	Random r = new Random();
+	ArrayList<Pair<Integer, Integer>> spots = new ArrayList<>();
+	for (int i = 0; i < 5; i++){
+	    Pair<Integer, Integer> p = new Pair<>(r.nextInt(3), r.nextInt(3));
+	    while(spots.contains(p)){
+		p = new Pair<>(r.nextInt(3), r.nextInt(3));
+	    }
+	    spots.add(p);
+	}
+	for(Pair<Integer, Integer> p2 : spots){
+	    if (deck.size() != 0){
+	    board.set(p2.getKey(), p2.getValue(), deck.getNextCard());}
+	}
     }
 }
