@@ -41,7 +41,11 @@ public class Elevens {
 
         if(values.contains(jack) && values.contains(queen) && values.contains(king))
             return false;
-
+	if(values.contains(jack)) {
+	    values.remove(values.indexOf(jack));
+	    if(values.contains(jack))
+		return false;
+	}
         for(Card c : values) {
             if(!c.equals(jack) && !c.equals(queen) && !c.equals(king)) {
                 Card match = c.getMatchingCard();
@@ -83,6 +87,19 @@ public class Elevens {
 	    play.remove(play.indexOf(new Card(11)));
 	    play.remove(play.indexOf(new Card(12)));
 	    play.remove(play.indexOf(new Card(13)));
+	}
+	if(play.contains(new Card(11))) {
+	    play.remove(play.indexOf(new Card(11)));
+	    if(play.contains(new Card(11))) {
+		play.remove(play.indexOf(new Card(11)));
+		if(play.contains(new Card(11))){
+		    play.remove(play.indexOf(new Card(11)));
+		    if(play.contains(new Card(11)))
+			play.remove(play.indexOf(new Card(11)));
+		}
+	    }
+	    else
+		return false;
 	}
 	for(int i = 0; i<play.size();i++) {
 	    Card c = play.get(i).getMatchingCard();
