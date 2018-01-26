@@ -8,6 +8,15 @@ public class Card implements Comparable {
      */
     public Card(int inValue) {
         value = inValue;
+	if (value == 11){
+		value = 1000;
+	}
+	else if (value == 12){
+		value = 1100;
+	}
+	else if (value == 13){
+		value = 1200;
+	}
     }
 
     /**
@@ -15,17 +24,17 @@ public class Card implements Comparable {
      * @param inDesc the desc of the card (e.g. A, 2..9, T, J, Q, K)
      */
     public Card(String inDesc) {
-
+	inDesc = inDesc.toUpperCase();
         if(inDesc.equals("A"))
             value = 1;
         else if(inDesc.equals("T"))
             value = 10;
         else if(inDesc.equals("J"))
-            value = 11;
+            value = 1000;
         else if(inDesc.equals("Q"))
-            value = 12;
+            value = 1100;
         else if(inDesc.equals("K"))
-            value = 13;
+            value = 1200;
         else
             value = Integer.parseInt(inDesc);
     }
@@ -39,11 +48,11 @@ public class Card implements Comparable {
             return "A";
         else if (value == 10)
             return "T";
-        else if (value == 11)
+        else if (value == 1000)
             return "J";
-        else if (value == 12)
+        else if (value == 1100)
             return "Q";
-        else if (value == 13)
+        else if (value == 1200)
             return "K";
         else
             return String.valueOf(value);
@@ -79,6 +88,10 @@ public class Card implements Comparable {
      */
     public Card getMatchingCard() {
         return new Card(11 - value);
+    }
+
+    public int getValue(){
+	return value;
     }
 
 }

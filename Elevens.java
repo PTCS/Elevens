@@ -45,7 +45,6 @@ public class Elevens {
         for(Card c : values) {
             if(!c.equals(jack) && !c.equals(queen) && !c.equals(king)) {
                 Card match = c.getMatchingCard();
-
                 if (values.contains(match))
                     return false;
             }
@@ -66,11 +65,17 @@ public class Elevens {
      * Processes moves from the user.
      * @param moves moves from the user.
      */
-    public void processMoves(String[] moves) {
+    public boolean processMoves(String[] moves) {
+	boolean legal = false;
+	if (!equalsEleven(moves)){
+		return false;
+	}
         for(String s : moves) {
-            if(deck.size() > 0)
+            if(deck.size() > 0){
                 board.replace(new Card(s), deck.getNextCard());
-        }
+            }
+	}
+	return true;
     }
 
     /**
@@ -80,4 +85,30 @@ public class Elevens {
     public String getBoard() {
         return board.toString();
     }
+
+    public boolean equalsEleven(String[] list){
+	if(list[0].equals("quit") || list[0].equals("exit")){
+		System.exit(-1);
+	}
+	Card[] cards = new Card[list.length];
+	if (list.length < 2 || list.length > 3){
+		return false;
+	}
+	else{
+		cards[0] = new Card(list[0]);
+		cards[1] = new Card(list[1]);
+		if (list.length == 3){
+			cards[2] = new Card(list[2]);
+		}
+		int sum = 0;
+		for (int i = 0; i < list.length; i++){
+			sum+=cards[i].getValue();
+		}
+		if ((sum == 11 && list.length == 2) || sum == 3300){
+			return true;
+		}
+		return false;
+	}
+    }
 }
+

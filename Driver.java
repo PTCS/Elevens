@@ -10,9 +10,20 @@ public class Driver {
         do {
             System.out.println(game.getBoard());
 
+    	    System.out.println();
+
             if (!game.isOver()) {
-                String[] moves = in.nextLine().split(" ");
-                game.processMoves(moves);
+		boolean done = false;
+		while (!done){
+                	String[] moves = in.nextLine().split(" ");
+	        	System.out.println();
+                	boolean check = game.processMoves(moves);
+			done = check;
+			if (!done){
+				System.out.println("Invalid entry. Try again.");
+				System.out.println();
+			}
+		}
             }
         } while(!game.isOver());
 
