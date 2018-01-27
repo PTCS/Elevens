@@ -51,6 +51,30 @@ public class Elevens {
             }
         }
 
+	int Kcount = 0;
+	for (int i = 0; i < values.size(); i++) {
+	    if (values.get(i).equals(king))
+		Kcount++;
+	}
+	if (Kcount == 3)
+	    return true;
+
+	int Qcount = 0;
+	for (int i = 0; i < values.size(); i++) {
+	    if (values.get(i).equals(queen))
+		Qcount++;
+	}
+	if (Qcount == 3)
+	    return true;
+	
+	int Jcount = 0;
+	for (int i = 0; i < values.size(); i++) {
+	    if (values.get(i).equals(jack))
+		Jcount++;
+	}
+	if (Jcount == 3)
+	    return true;
+
         return true;
     }
 
