@@ -80,4 +80,26 @@ public class Elevens {
     public String getBoard() {
         return board.toString();
     }
+
+    public boolean isValid(String[] moves){
+	if(moves.length != 2){
+		return false;
+	}
+	
+	Card c1 = new Card(moves[0]);
+	Card c2 = new Card(moves[1]);
+
+	if(!board.contains(c1) && board.contains(c2)){
+		return false;
+	}
+	if(c1.toString().equals("J") || c1.toString().equals("Q") || c1.toString().equals("K") && c2.toString().equals("J") || c2.toString().equals("Q") || c2.toString().equals("K")){
+            return true;
+        }
+        else if (c1.getValue() + c2.getValue() != 11){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

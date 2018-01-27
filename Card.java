@@ -9,6 +9,9 @@ public class Card implements Comparable {
     public Card(int inValue) {
         value = inValue;
     }
+    public int getValue(){
+	return value;
+    }
 
     /**
      * Constructs a new Card object from a description

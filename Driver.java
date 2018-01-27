@@ -12,6 +12,12 @@ public class Driver {
 
             if (!game.isOver()) {
                 String[] moves = in.nextLine().split(" ");
+		boolean gucci = game.isValid(moves);
+		if(!gucci){
+			System.out.println("Incorrect please try again: ");
+			moves = in.nextLine().split(" ");
+			gucci = game.isValid(moves);
+		}
                 game.processMoves(moves);
             }
         } while(!game.isOver());
