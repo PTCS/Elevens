@@ -9,10 +9,19 @@ public class Driver {
 
         do {
             System.out.println(game.getBoard());
+            String [] moves;
 
             if (!game.isOver()) {
-                String[] moves = in.nextLine().split(" ");
-                game.processMoves(moves);
+                moves = in.nextLine().split(" ");
+
+                if(Integer.parseInt(moves[0]) + Integer.parseInt(moves[1]) == 11)
+                    game.processMoves(moves);
+
+                else{
+                    System.out.println("Please enter values that add to 11");
+                    moves = in.nextLine().split(" ");
+
+                }
             }
         } while(!game.isOver());
 
@@ -26,3 +35,4 @@ public class Driver {
 
     }
 }
+         
