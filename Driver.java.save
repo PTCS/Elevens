@@ -14,15 +14,14 @@ public class Driver {
                 String[] moves = in.nextLine().split(" ");
                 game.processMoves(moves);
             }
-        } while(!game.isOver());
+        } while (!game.isOver());
 
         System.out.println(game.getBoard());
 
-        if(game.didWin())
-            System.out.println("Winner! Congratulations, you are truly a skilled player.");
+        if (game.didWin())
+            System.out.println("Winner");
         else
-            System.out.println("Loser! Sorry, but you are a weak and unskilled player.");
-
+            System.out.println("Lost");
 
     }
 }
